@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Consulta SQL - TOTVS RM</title>
+    <meta
+      name="description"
+      content="Automatiza a geração de consultas SQL para o TOTVS RM com base nas relações entre tabelas e permite visualizar graficamente essas relações." />
+    <link rel="icon" type="image/x-icon" href="web/favicon.ico" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"
+      rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="web/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        Gerador de Consulta SQL - TOTVS RM
+        <select id="slc-versao">
+          <option value="2306_113">12.1.2306.113</option>
+          <option value="2402_105" selected>12.1.2402.105</option>
+        </select>
+      </h1>
+    </header>
+
+    <main>
+      <div id="secao-tabelas">
+        <section id="secao-selecao">
+          <div class="pilha-h">
+            <h2>Selecione Tabelas</h2>
+            <button id="btn-limpar-selecao">Limpar Seleção</button>
+          </div>
+          <input
+            type="text"
+            class="in-busca"
+            id="in-busca-tabela"
+            placeholder="Buscar tabela..." />
+          <ul id="lst-tabelas">
+            <!-- As tabelas serão listadas aqui pelo js -->
+          </ul>
+        </section>
+
+        <section id="secao-grafo">
+          <h2>Visualização de Relações de Tabelas</h2>
+          <div id="grafo"></div>
+        </section>
+      </div>
+
+      <section id="secao-sql">
+        <h2>Consulta SQL Gerada</h2>
+        <div class="pilha-h">
+          <div class="pilha-v">
+            <button id="btn-sql-copiar">Copiar SQL</button>
+            <button id="btn-sql-baixar">Baixar SQL</button>
+          </div>
+
+          <div class="pilha-v">
+            <label>
+              <input type="checkbox" id="in-descricoes-select" checked />
+              Mostrar descrições no SELECT
+            </label>
+            <label>
+              <input type="checkbox" id="in-descricoes-join" checked />
+              Mostrar descrições no JOIN
+            </label>
+            <label>
+              <input type="checkbox" id="in-colunas-modificacao" />
+              Incluir colunas criação e modificação
+            </label>
+            <label>
+              <input type="checkbox" id="in-tabelas-disconexas" />
+              (Não recomendado) Incluir tabelas disconexas
+            </label>
+          </div>
+
+          <form id="frm-tipo-join" class="pilha-v">
+            <label>
+              <input type="radio" name="in-tipo-join" value="" /> Inner Join
+            </label>
+            <label>
+              <input type="radio" name="in-tipo-join" value="LEFT " checked />
+              Left Join
+            </label>
+            <label>
+              <input type="radio" name="in-tipo-join" value="RIGHT " /> Right
+              Join
+            </label>
+            <label>
+              <input type="radio" name="in-tipo-join" value="FULL OUTER " />
+              Full Outer Join
+            </label>
+          </form>
+        </div>
+
+        <pre><code id="sql" class="language-sql"></code></pre>
+      </section>
+    </main>
+
+    <div class="notificacao" id="not-sql-copia">
+      Consulta SQL copiada com sucesso!
+    </div>
+    <button id="btn-voltar-topo" title="Voltar para o topo da página">
+      &#10140;
+    </button>
+    <button id="btn-alternar-tema" title="Alternar Tema">☀️</button>
+    <a
+      href="https://github.com/vitorgt/TOTVS-RM-SQL"
+      id="btn-github"
+      target="_blank"
+      title="Acessar código fonte no GitHub"
+      >&#10094;&#10095;</a
+    >
+
+    <button id="btn-disconexas" title="Existem tabelas desconexas! Veja mais.">
+      ⚠️
+    </button>
+    <aside id="disconexas">
+      <button id="btn-disconexas-fechar">&#10006;</button>
+      <section>
+        <h2>Possíveis Relações para Tabelas Disconexas</h2>
+        <p>
+          ATENÇÂO! Nem todas as seguintes ligações podem fazer sentido. Use
+          extrema cautela!
+        </p>
+        <p>
+          Os <span class="txt-verde">🟢 circulos verdes</span> são as tabelas
+          selecionadas conectadas.
+        </p>
+        <p>
+          Os <span class="txt-vermelho">🔴 circulos vermelhos</span> são as
+          tabelas selecionadas disconexas.
+        </p>
+        <p>
+          As <span class="txt-amarelo">🟨 caixas amarelas</span> são tabelas que
+          relacionam as conectadas e as disconexas.
+        </p>
+
+        <div id="grafo-disconexas"></div>
+        <ul id="lst-conexoes">
+          <!-- Os caminhos serão listados aqui pelo js -->
+        </ul>
+      </section>
+    </aside>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-core.min.js"
+      defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-sql.min.js"
+      defer></script>
+    <script
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+      defer></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"
+      defer></script>
+    <script src="web/graphology.min.js" defer></script>
+    <script src="web/sql.js" defer></script>
+  </body>
+</html>

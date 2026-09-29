@@ -1,0 +1,351 @@
+:root {
+  /* Tema escuro (padrão) */
+  --background-color0: rgb(18, 18, 18);
+  --background-color1: rgb(44, 44, 46);
+  --text-color: rgb(255, 255, 255);
+  --red: rgb(255, 65, 54);
+  --orange: rgb(255, 169, 20);
+  --yellow: rgb(255, 212, 38);
+  --green: rgb(49, 222, 75);
+  --mint: rgb(108, 224, 219);
+  --cyan: rgb(112, 215, 255);
+  --blue: rgb(64, 156, 255);
+  --indigo: rgb(125, 122, 255);
+  --gray0: rgb(152, 152, 157);
+  --gray1: rgb(54, 54, 56);
+}
+
+[data-theme="light"] {
+  /* Tema claro */
+  --background-color0: rgb(255, 255, 255);
+  --background-color1: rgb(229, 229, 234);
+  --text-color: rgb(0, 0, 0);
+  --red: rgb(194, 6, 24);
+  --orange: rgb(245, 139, 0);
+  --yellow: rgb(245, 194, 0);
+  --green: rgb(30, 195, 55);
+  --mint: rgb(0, 189, 180);
+  --cyan: rgb(65, 175, 220);
+  --blue: rgb(0, 122, 245);
+  --indigo: rgb(54, 52, 163);
+  --gray0: rgb(97, 97, 101);
+  --gray1: rgb(188, 188, 192);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background-color0);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 20px 50px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+#secao-tabelas {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  margin-bottom: 40px;
+}
+
+#secao-grafo,
+#secao-selecao {
+  width: 50%;
+  height: 400px;
+}
+
+.pilha-h {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; /* Centraliza verticalmente os itens */
+  gap: 20px;
+}
+
+.pilha-v {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.in-busca {
+  width: 95%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: var(--background-color0);
+  color: var(--text-color);
+  border-radius: 5px;
+  border: 1px solid var(--gray1);
+  outline: 0;
+}
+
+input.in-busca:focus {
+  outline: none !important;
+}
+
+#lst-tabelas {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  height: 353px;
+  overflow-y: scroll;
+}
+
+#lst-conexoes {
+  list-style: none;
+  padding: 0;
+  margin: 10px;
+  width: 95%;
+  height: 35vh;
+  overflow-y: auto;
+}
+
+#lst-tabelas li,
+#lst-conexoes li {
+  margin: 10px;
+}
+
+#grafo {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+#secao-sql {
+  margin: 20px;
+}
+
+/* Sobrescrevendo os estilos padrões do Prism.js */
+pre[class*="language-sql"],
+code[class*="language-sql"],
+pre,
+code,
+.language-sql,
+.token {
+  width: 100%;
+  background: none;
+  background-color: none;
+  text-shadow: none;
+  color: var(--text-color);
+  overflow-x: auto;
+  padding: 0;
+  margin: 0;
+}
+/* Palavras reservadas */
+.language-sql .token.keyword,
+.language-sql .token.operator {
+  color: var(--mint);
+  font-weight: bold;
+  background: none;
+  background-color: none;
+  text-shadow: none;
+}
+/* Comentários */
+.language-sql .token.comment,
+.language-sql .token.punctuation {
+  color: var(--gray0);
+  font-style: italic;
+}
+/* Tabelas e Colunas */
+.language-sql .token.column,
+.language-sql .token.table {
+  color: var(--indigo);
+  font-weight: bold;
+}
+
+.notificacao {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: var(--green);
+  color: var(--text-color);
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+#btn-voltar-topo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--gray1);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  padding: 7px 10px 10px 10px;
+  cursor: pointer;
+  display: none; /* Inicialmente escondido */
+  font-size: 20px;
+  transform: rotate(-90deg);
+}
+
+#btn-alternar-tema {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: var(--gray1);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#btn-github {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px 7px;
+  background-color: var(--gray1);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+#btn-voltar-topo:hover,
+#btn-alternar-tema:hover,
+#btn-github:hover {
+  background-color: var(--gray0);
+}
+
+#btn-disconexas {
+  position: fixed;
+  top: 100px;
+  right: -5px;
+  background-color: var(--orange);
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 24px;
+  border-radius: 5px;
+  display: none;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  z-index: 3;
+}
+
+#btn-disconexas.ativo {
+  right: 49.5%;
+}
+
+#btn-disconexas-fechar {
+  position: fixed;
+  top: 10px;
+  right: -50%;
+  background-color: #00000000;
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  z-index: 7;
+}
+
+#btn-disconexas-fechar.ativo {
+  right: 30px;
+}
+
+#disconexas {
+  background: var(--background-color1);
+  background-color: var(--background-color1);
+  color: var(--text-color);
+  position: fixed;
+  top: 0;
+  right: -50%; /* Inicialmente oculto */
+  width: 50%;
+  height: 100%;
+  overflow-y: none;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  z-index: 5;
+}
+
+#disconexas.ativo {
+  right: 0;
+}
+
+#disconexas section {
+  margin: 20px;
+}
+
+#disconexas h2 {
+  padding: 10px 50px;
+}
+
+#disconexas p,
+#disconexas p span {
+  text-align: center;
+  margin: 0 !important;
+}
+
+.txt-verde {
+  color: var(--green);
+}
+
+.txt-vermelho {
+  color: var(--red);
+}
+
+.txt-amarelo {
+  color: var(--orange);
+}
+
+#grafo-disconexas {
+  width: 100%;
+  height: 45vh;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  #secao-tabelas {
+    flex-direction: row;
+  }
+
+  #secao-tabelas > div {
+    flex: 1;
+  }
+}
+@media (max-width: 768px) {
+  #secao-grafo,
+  #secao-selecao {
+    width: 100%;
+    margin-bottom: 70px;
+  }
+
+  .pilha-h {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  #disconexas {
+    width: 100%;
+    right: -100%; /* Inicialmente oculto */
+  }
+}
+
+@media (max-height: 600px) {
+  #disconexas {
+    overflow-y: scroll;
+  }
+}
