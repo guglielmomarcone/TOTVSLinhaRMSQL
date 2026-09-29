@@ -7,7 +7,7 @@ let clausulaSQL = ""
 let grafo = null
 
 function requisitaTabelas(versao = "2606_141") {
-  caminho = "https://raw.githubusercontent.com/guglielmomarcone/guglielmomarcone/main/dados/"
+  caminho = "https://raw.githubusercontent.com/guglielmomarcone/TOTVSLinhaRMSQL/main/dados/"
   fetch(caminho + "tabelas_" + versao + ".json")
     .then((resposta) => resposta.json())
     .then((dados) => {
@@ -21,7 +21,7 @@ function requisitaTabelas(versao = "2606_141") {
 requisitaTabelas()
 
 function requisitaRelacoes(versao = "2606_141") {
-  caminho = "https://raw.githubusercontent.com/guglielmomarcone/guglielmomarcone/main/dados/"
+  caminho = "https://raw.githubusercontent.com/guglielmomarcone/TOTVSLinhaRMSQL/main/dados/"
   fetch(caminho + "relacoes_" + versao + ".json")
     .then((resposta) => resposta.json())
     .then((dados) => {
