@@ -6,8 +6,8 @@ let edges = []
 let clausulaSQL = ""
 let grafo = null
 
-function requisitaTabelas(versao = "2402_105") {
-  caminho = "https://raw.githubusercontent.com/vitorgt/TOTVS-RM-SQL/main/dados/"
+function requisitaTabelas(versao = "2606_141") {
+  caminho = "https://raw.githubusercontent.com/guglielmomarcone/main/dados/"
   fetch(caminho + "tabelas_" + versao + ".json")
     .then((resposta) => resposta.json())
     .then((dados) => {
@@ -20,8 +20,8 @@ function requisitaTabelas(versao = "2402_105") {
 }
 requisitaTabelas()
 
-function requisitaRelacoes(versao = "2402_105") {
-  caminho = "https://raw.githubusercontent.com/vitorgt/TOTVS-RM-SQL/main/dados/"
+function requisitaRelacoes(versao = "2606_141") {
+  caminho = "https://raw.githubusercontent.com/guglielmomarcone/main/dados/"
   fetch(caminho + "relacoes_" + versao + ".json")
     .then((resposta) => resposta.json())
     .then((dados) => {
