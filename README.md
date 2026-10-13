@@ -1,6 +1,6 @@
 # Geração de Consultas SQL a partir de Tabelas e Relacionamentos do TOTVS RM
 
-## [Versão online](https://vitorgt.github.io/TOTVS-RM-SQL)
+## [Versão online](https://guglielmomarcone.github.io/TOTVSLinhaRMSQL/)
 
 ## Introdução
 
